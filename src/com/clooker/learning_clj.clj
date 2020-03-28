@@ -63,25 +63,25 @@
     "is empty"
     "is not empty")
 
-   ;do -  multiple side-effects
+  ;do -  multiple side-effects
   (if (empty? "")
     (do
       (println "first step")
       (println "second step")))
 
-   ;when - has implicit do
+  ;when - has implicit do
   (when (empty? "")
     (println "first step")
     (println "second step"))
 
-   ;case - is like switch
+  ;case - is like switch
   (let [x "Hello"]
     (case x
       "Goodbye" :goodbye
       "Hello" :hello
       :else :default-value))
 
-   ;cond - for custom comparison
+  ;cond - for custom comparison
   (let [x 400]
     (cond
       (> x 100) :more-than-100
@@ -92,24 +92,24 @@
 (defn fns
   "Demonstrate some clj functions"
   []
-  ; fn that takes no args and returns a string
+  ;fn that takes no args and returns a string
   (fn [] "Hello World")
 
-   ; fn that has a name
+  ;fn that has a name
   (def hello-world (fn [] "Hello World"))
 
-   ; call the fn by name
+  ;call the fn by name
   (hello-world)
 
-   ; shorthand to bind name to fn
+  ;shorthand to bind name to fn
   (defn hello-world [] "Hello World")
 
   (hello-world)
 
-   ; shorthand for anon fn
+  ;shorthand for anon fn
   (#(str "Hello World"))
 
-   ;fn that takes an arg
+  ;fn that takes an arg
   (defn hello [name] (str "Hello, " name))
 
   (hello "Chad")
@@ -136,8 +136,8 @@
 
   (greet-with-default)
 
-  ;destructure map in args
-  ;:as is like js spread
+  ;destructure hash-map in args
+  ;:as gives ref to entire hash-map
   (defn introduce-self [{name :name :as config}]
     (str "Hello, my name is " name))
 
