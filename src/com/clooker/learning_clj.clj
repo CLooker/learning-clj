@@ -148,3 +148,134 @@
     (str "Hello, my name is " name ". My hobby is " hobby "."))
 
   (introduce-self-and-hobby ["Chad" "Clojure"]))
+
+(defn collections
+  "Demonstrate some clj collections"
+  []
+
+  (def xs (list 1 2 3))
+
+  ;returns new list, adds item at head
+  (cons 0 xs)
+
+  ;xs unchanged 
+  xs
+
+  (first xs)
+
+  (last xs)
+
+  ;does not return nil when index out of bounds, throws error
+  ;(nth xs 6)
+
+  (def ys [1 2 3])
+
+  ;returns a list, even though ys is a vector
+  (cons 0 ys)
+
+  ;conj adds item to collection in the "natural way"
+  ;adds item to end of vector
+  (conj ys 4)
+
+  ;adds item to front of list
+  (conj xs 0)
+
+  ;concat returns list - lazySeq
+  (concat [0 1 2] ys)
+
+  ;PersistentArrayMap - preserves order
+  (array-map :a 1)
+
+  ;PersistentHashMap - does not preserve order
+  (hash-map :a 1)
+
+  (def my-map {:a 1})
+
+  ;put
+  (def nested-map (assoc my-map :b {:c 3}))
+
+  (assoc-in nested-map [:b :d] 4)
+
+  ;takes a fn that computes updated value
+  (update-in nested-map [:b :c] inc)
+
+  (get my-map :a)
+
+  ;keywords are fns
+  (:a my-map)
+
+  ;maps are fns, however if my-map is nil then you will have an error
+  (my-map :a)
+  ;(nil :a)
+
+  (def my-set #{1 2 3})
+
+  ;remove an item
+  (disj my-set 3)
+
+  ;does not change my-set
+  (contains? my-set 3)
+
+  (get my-set 4))
+
+(defn recursion
+  "Demonstrating recursion in Clojure"
+  []
+
+  ;classic recursion
+  (defn sum-nums-recur [nums accum]
+    (if (empty? nums)
+      accum
+      (sum-nums-recur (rest nums) (+ accum (first nums)))))
+
+  (sum-nums-recur [1 2 3 4] 0)
+
+  ;multi-variadic fn body handles initial call
+  (defn sum-nums-recur
+    ([nums] (sum-nums-recur nums 0))
+    ([nums accum]
+     (if (empty? nums)
+       accum
+       (sum-nums-recur
+        (rest nums)
+        (+ accum (first nums))))))
+
+  (sum-nums-recur [1 2 3 4])
+
+  ;Clojure has no TCO, so stack overflow is possible
+  ;(sum-nums-recur (range 10000000))
+
+  ;use recur to get flavor of tail call recursion in Clojure
+  (defn sum-nums-recur-kw
+    ([nums] (sum-nums-recur nums 0))
+    ([nums accum]
+     (if (empty? nums)
+       accum
+       (recur
+        (rest nums)
+        (+ accum (first nums))))))
+
+  ;no stack overflow :0
+  (sum-nums-recur-kw (range 10000000))
+
+  ;loop recur pattern
+  ;fn doesn't need arg for accum, loop creates local bindings like let
+  (defn sum-nums-loop-recur [nums]
+    (loop [ns nums
+           accum 0]
+      (if (empty? ns)
+        accum
+        (recur (rest ns) (+ accum (first ns))))))
+
+  (sum-nums-loop-recur (range 10000000))
+
+  ;reduce pattern
+  ;don't usually need loop recur if you just iterate over every item to build an accum
+  (defn sum-nums-reduce [nums]
+    (reduce + 0 nums))
+
+  (sum-nums-reduce (range 10000000)))
+
+
+
+
