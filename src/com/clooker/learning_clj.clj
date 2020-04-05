@@ -274,8 +274,19 @@
   (defn sum-nums-reduce [nums]
     (reduce + 0 nums))
 
-  (sum-nums-reduce (range 10000000)))
+  (sum-nums-reduce (range 10000000))
 
+  (defn filter-even [ns]
+    (filter even? ns))
 
+  (filter-even [1 2 3 4 5 6])
 
+  (defn map-inc [ns]
+    (map inc ns))
 
+  (map-inc [1 2 3 4 5])
+
+  (defn group-even-odd [ns]
+    (group-by #(if (even? %) :even :odd) ns))
+
+  (group-even-odd [1 2 3 4 5 6]))
