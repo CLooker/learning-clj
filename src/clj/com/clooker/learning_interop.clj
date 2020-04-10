@@ -1,5 +1,8 @@
 (ns com.clooker.learning_interop
-  (:import [java.util Date Calendar]))
+  (:import
+   (java.util Date
+              Calendar)
+   MyClass))
 
 (System/currentTimeMillis)
 
@@ -94,3 +97,6 @@
 ;;(import com.clooker.learning_interop.MyClass)
 ;;(def my-class (MyClass. "Chad"))
 ;;(.getName my-instance)
+
+(def myClass (MyClass. "Chad"))
+(.getName myClass)
