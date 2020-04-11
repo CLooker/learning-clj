@@ -49,3 +49,34 @@
 (def rev-ch (reverser in-ch))
 (print-listener rev-ch)
 (go (>! in-ch [1 2 3]))
+
+;;consume from many channels at once
+(defn combine-chans [& chans]
+  (let [out-chan (chan)]
+    (go-loop []
+      (let [[value c] (async/alts! chans)]
+        (>! out-chan value))
+      (recur))
+    out-chan))
+
+(def chan1 (chan))
+(def chan2 (chan))
+(def both-chans (combine-chans chan1 chan2))
+(print-listener both-chans)
+(go (>! chan2 "Hi chans"))
+
+;;channels have a map fn
+(def in-chan-1 (chan))
+(def rev-chan-1 (async/map reverse [in-chan-1]))
+(print-listener rev-chan-1)
+(go (>! in-chan-1 [3 2 1]))
+
+;;channels have a reduce fn
+;;but channel must be closed before reduce will occur
+(def in-chan-2 (chan))
+(def sum-chan (async/reduce + 0 in-chan-2))
+(go (println (<! sum-chan)))
+(go (>! in-chan-2 1))
+(go (>! in-chan-2 2))
+(go (>! in-chan-2 3))
+(async/close! in-chan-2)
