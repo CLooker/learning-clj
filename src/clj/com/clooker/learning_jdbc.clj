@@ -12,8 +12,6 @@
 ;; can pass pool around and it knows how to make good use of the connections
 (def my-pool (pool/make-datasource-spec my-db))
 
-(.close my-pool)
-
 (db/execute! my-pool
              ["DROP TABLE IF EXISTS employees"])
 
@@ -42,6 +40,6 @@ employees
 
 ;; execute multiple statements in a transaction
 ;; second statement is invalid, so first one will be rolled back
-(db/with-db-transaction [txn my-db]
-  (db/delete! txn "employees" ["name='Joey'"])
-  (db/delete! txn "employees" ["name=adlkfjadkljfjkadfjk"]))
+;; (db/with-db-transaction [txn my-db]
+;;   (db/delete! txn "employees" ["name='Joey'"])
+;;   (db/delete! txn "employees" ["name=adlkfjadkljfjkadfjk"]))

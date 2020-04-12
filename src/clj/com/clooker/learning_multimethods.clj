@@ -18,7 +18,7 @@
 (hello {:language ::french})
 
 ;;throws error as we haven't defined ::english
-(hello {:language ::english})
+;; (hello {:language ::english})
 
 ;;use :default to create default value
 (defmethod hello :default [_] "Hello")

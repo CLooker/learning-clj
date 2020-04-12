@@ -16,7 +16,7 @@
 
 ;; cannot read lines after reader is closed
 (.close reader)
-(print lines)
+;; (print lines)
 
 ;; with-open makes working with closable things safer
 ;; will automatically close the stream
