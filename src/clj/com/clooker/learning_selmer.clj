@@ -1,4 +1,4 @@
-(ns com.clooker.learning-html-rendering
+(ns com.clooker.learning-selmer
   (:gen-class)
   (:require [selmer.parser :as tmpl]))
 

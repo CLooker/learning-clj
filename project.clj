@@ -10,7 +10,8 @@
                  [clojure.jdbc/clojure.jdbc-c3p0 "0.3.3"]
                  [ring "1.8.0"]
                  [compojure "1.6.1"]
-                 [selmer "1.12.20"]]
+                 [selmer "1.12.20"]
+                 [hiccup "2.0.0-alpha2"]]
   :target-path "target/%s"
   :profiles {:uberjar {:aot :all}}
   :source-paths ["src/clj"]
