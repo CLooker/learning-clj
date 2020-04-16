@@ -12,7 +12,8 @@
                  [compojure "1.6.1"]
                  [selmer "1.12.20"]
                  [hiccup "2.0.0-alpha2"]
-                 [enlive "1.1.6"]]
+                 [enlive "1.1.6"]
+                 [markdown-clj "1.10.4"]]
   :target-path "target/%s"
   :profiles {:uberjar {:aot :all}}
   :source-paths ["src/clj"]
