@@ -61,4 +61,4 @@
 ;; :join? false starts server from the repl without blocking
 ;; var means as we update the app fn, we won't need to re-evaluate server for server to use the latest app def
 ;; the shorthand for (var app) is #'app
-(def server (jetty/run-jetty (var app) {:port 3001 :join? false}))
+;; (def server (jetty/run-jetty (var app) {:port 3001 :join? false}))
