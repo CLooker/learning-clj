@@ -1,6 +1,6 @@
 # learning-clj
 
-These are the notes while watching [this](https://www.udemy.com/course/learning-clojure/) video.
+These are the notes I took while watching [this](https://www.udemy.com/course/learning-clojure/) video.
 
 ## License
 
